@@ -1,0 +1,17 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+asn1crypto-python
+attrs-python
+cffi
+cryptography_vectors
+hypothesis-python
+idna
+iso8601
+openssl-dev
+packaging
+pretend
+pyparsing
+pytz
+rust-std32
+rustc
+setuptools-rust
