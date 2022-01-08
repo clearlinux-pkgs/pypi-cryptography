@@ -6,7 +6,7 @@
 #
 Name     : pypi-cryptography
 Version  : 35.0.0
-Release  : 150
+Release  : 151
 URL      : https://files.pythonhosted.org/packages/10/91/90b8d4cd611ac2aa526290ae4b4285aa5ea57ee191c63c2f3d04170d7683/cryptography-35.0.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/10/91/90b8d4cd611ac2aa526290ae4b4285aa5ea57ee191c63c2f3d04170d7683/cryptography-35.0.0.tar.gz
 Source1  : http://localhost/cgit/projects/cryptography-vendor/snapshot/cryptography-vendor-35.0.0.tar.xz
@@ -17,31 +17,15 @@ License  : Apache-2.0 BSD-3-Clause ICU MIT Python-2.0
 Requires: pypi-cryptography-license = %{version}-%{release}
 Requires: pypi-cryptography-python = %{version}-%{release}
 Requires: pypi-cryptography-python3 = %{version}-%{release}
-Requires: cffi
-BuildRequires : asn1crypto-python
-BuildRequires : attrs-python
 BuildRequires : buildreq-distutils3
-Provides: cryptography
-Provides: cryptography-python
-Provides: cryptography-python3
 BuildRequires : buildreq-golang
-BuildRequires : cffi
-BuildRequires : cryptography_vectors
-BuildRequires : hypothesis-python
-BuildRequires : idna
-BuildRequires : iso8601
 BuildRequires : openssl-dev
-BuildRequires : packaging
-BuildRequires : pretend
-BuildRequires : pyparsing
 BuildRequires : pypi(cffi)
 BuildRequires : pypi(setuptools)
 BuildRequires : pypi(setuptools_rust)
 BuildRequires : pypi(wheel)
-BuildRequires : pytz
 BuildRequires : rust-std32
 BuildRequires : rustc
-BuildRequires : setuptools-rust
 
 %description
 =================
@@ -99,7 +83,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641425775
+export SOURCE_DATE_EPOCH=1641676825
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
