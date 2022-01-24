@@ -6,7 +6,7 @@
 #
 Name     : pypi-cryptography
 Version  : 35.0.0
-Release  : 151
+Release  : 152
 URL      : https://files.pythonhosted.org/packages/10/91/90b8d4cd611ac2aa526290ae4b4285aa5ea57ee191c63c2f3d04170d7683/cryptography-35.0.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/10/91/90b8d4cd611ac2aa526290ae4b4285aa5ea57ee191c63c2f3d04170d7683/cryptography-35.0.0.tar.gz
 Source1  : http://localhost/cgit/projects/cryptography-vendor/snapshot/cryptography-vendor-35.0.0.tar.xz
@@ -24,7 +24,6 @@ BuildRequires : pypi(cffi)
 BuildRequires : pypi(setuptools)
 BuildRequires : pypi(setuptools_rust)
 BuildRequires : pypi(wheel)
-BuildRequires : rust-std32
 BuildRequires : rustc
 
 %description
@@ -83,7 +82,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641676825
+export SOURCE_DATE_EPOCH=1643044828
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
