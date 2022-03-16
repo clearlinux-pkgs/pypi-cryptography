@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x235AE5F129F9ED98 (paul.l.kehrer@gmail.com)
 #
 Name     : pypi-cryptography
-Version  : 36.0.1
-Release  : 153
-URL      : https://files.pythonhosted.org/packages/f9/4b/1cf8e281f7ae4046a59e5e39dd7471d46db9f61bb564fddbff9084c4334f/cryptography-36.0.1.tar.gz
-Source0  : https://files.pythonhosted.org/packages/f9/4b/1cf8e281f7ae4046a59e5e39dd7471d46db9f61bb564fddbff9084c4334f/cryptography-36.0.1.tar.gz
+Version  : 36.0.2
+Release  : 154
+URL      : https://files.pythonhosted.org/packages/10/a7/51953e73828deef2b58ba1604de9167843ee9cd4185d8aaffcb45dd1932d/cryptography-36.0.2.tar.gz
+Source0  : https://files.pythonhosted.org/packages/10/a7/51953e73828deef2b58ba1604de9167843ee9cd4185d8aaffcb45dd1932d/cryptography-36.0.2.tar.gz
 Source1  : http://localhost/cgit/projects/cryptography-vendor/snapshot/cryptography-vendor-36.0.1.tar.xz
-Source2  : https://files.pythonhosted.org/packages/f9/4b/1cf8e281f7ae4046a59e5e39dd7471d46db9f61bb564fddbff9084c4334f/cryptography-36.0.1.tar.gz.asc
+Source2  : https://files.pythonhosted.org/packages/10/a7/51953e73828deef2b58ba1604de9167843ee9cd4185d8aaffcb45dd1932d/cryptography-36.0.2.tar.gz.asc
 Summary  : cryptography is a package which provides cryptographic recipes and primitives to Python developers.
 Group    : Development/Tools
 License  : Apache-2.0 BSD-3-Clause ICU MIT Python-2.0
@@ -27,7 +27,11 @@ BuildRequires : pypi(wheel)
 BuildRequires : rustc
 
 %description
+pyca/cryptography
 =================
+.. image:: https://img.shields.io/pypi/v/cryptography.svg
+:target: https://pypi.org/project/cryptography/
+:alt: Latest Version
 
 %package license
 Summary: license components for the pypi-cryptography package.
@@ -59,12 +63,12 @@ python3 components for the pypi-cryptography package.
 
 
 %prep
-%setup -q -n cryptography-36.0.1
+%setup -q -n cryptography-36.0.2
 cd %{_builddir}
 tar xf %{_sourcedir}/cryptography-vendor-36.0.1.tar.xz
-cd %{_builddir}/cryptography-36.0.1
+cd %{_builddir}/cryptography-36.0.2
 mkdir -p ./
-cp -r %{_builddir}/cryptography-vendor-36.0.1/* %{_builddir}/cryptography-36.0.1/./
+cp -r %{_builddir}/cryptography-vendor-36.0.1/* %{_builddir}/cryptography-36.0.2/./
 
 %build
 ## build_prepend content
@@ -82,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1644453309
+export SOURCE_DATE_EPOCH=1647454742
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -95,9 +99,9 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pypi-cryptography
-cp %{_builddir}/cryptography-36.0.1/LICENSE.APACHE %{buildroot}/usr/share/package-licenses/pypi-cryptography/de33ead2bee64352544ce0aa9e410c0c44fdf7d9
-cp %{_builddir}/cryptography-36.0.1/LICENSE.BSD %{buildroot}/usr/share/package-licenses/pypi-cryptography/ea5b412c09f3b29ba1d81a61b878c5c16ffe69d8
-cp %{_builddir}/cryptography-36.0.1/LICENSE.PSF %{buildroot}/usr/share/package-licenses/pypi-cryptography/acf6b1628b04fe43a99071223cdbd7b66691c264
+cp %{_builddir}/cryptography-36.0.2/LICENSE.APACHE %{buildroot}/usr/share/package-licenses/pypi-cryptography/de33ead2bee64352544ce0aa9e410c0c44fdf7d9
+cp %{_builddir}/cryptography-36.0.2/LICENSE.BSD %{buildroot}/usr/share/package-licenses/pypi-cryptography/ea5b412c09f3b29ba1d81a61b878c5c16ffe69d8
+cp %{_builddir}/cryptography-36.0.2/LICENSE.PSF %{buildroot}/usr/share/package-licenses/pypi-cryptography/acf6b1628b04fe43a99071223cdbd7b66691c264
 cp %{_builddir}/cryptography-vendor-36.0.1/vendor/aliasable/LICENSE %{buildroot}/usr/share/package-licenses/pypi-cryptography/5f2da41389ce5873a46945bc1b75454acfd75cf6
 cp %{_builddir}/cryptography-vendor-36.0.1/vendor/asn1/LICENSE %{buildroot}/usr/share/package-licenses/pypi-cryptography/b9b8e747d9af5285e3cf6852d84ec355b39c70e8
 cp %{_builddir}/cryptography-vendor-36.0.1/vendor/asn1_derive/LICENSE %{buildroot}/usr/share/package-licenses/pypi-cryptography/b9b8e747d9af5285e3cf6852d84ec355b39c70e8
