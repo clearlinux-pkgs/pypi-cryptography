@@ -6,7 +6,7 @@
 #
 Name     : pypi-cryptography
 Version  : 37.0.2
-Release  : 157
+Release  : 158
 URL      : https://files.pythonhosted.org/packages/51/05/bb2b681f6a77276fc423d04187c39dafdb65b799c8d87b62ca82659f9ead/cryptography-37.0.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/51/05/bb2b681f6a77276fc423d04187c39dafdb65b799c8d87b62ca82659f9ead/cryptography-37.0.2.tar.gz
 Source1  : http://localhost/cgit/projects/cryptography-vendor/snapshot/cryptography-vendor-37.0.2.tar.xz
@@ -14,6 +14,8 @@ Source2  : https://files.pythonhosted.org/packages/51/05/bb2b681f6a77276fc423d04
 Summary  : cryptography is a package which provides cryptographic recipes and primitives to Python developers.
 Group    : Development/Tools
 License  : Apache-2.0 BSD-3-Clause MIT Python-2.0
+Requires: pypi-cryptography-filemap = %{version}-%{release}
+Requires: pypi-cryptography-lib = %{version}-%{release}
 Requires: pypi-cryptography-license = %{version}-%{release}
 Requires: pypi-cryptography-python = %{version}-%{release}
 Requires: pypi-cryptography-python3 = %{version}-%{release}
@@ -31,6 +33,24 @@ pyca/cryptography
 .. image:: https://img.shields.io/pypi/v/cryptography.svg
 :target: https://pypi.org/project/cryptography/
 :alt: Latest Version
+
+%package filemap
+Summary: filemap components for the pypi-cryptography package.
+Group: Default
+
+%description filemap
+filemap components for the pypi-cryptography package.
+
+
+%package lib
+Summary: lib components for the pypi-cryptography package.
+Group: Libraries
+Requires: pypi-cryptography-license = %{version}-%{release}
+Requires: pypi-cryptography-filemap = %{version}-%{release}
+
+%description lib
+lib components for the pypi-cryptography package.
+
 
 %package license
 Summary: license components for the pypi-cryptography package.
@@ -52,6 +72,7 @@ python components for the pypi-cryptography package.
 %package python3
 Summary: python3 components for the pypi-cryptography package.
 Group: Default
+Requires: pypi-cryptography-filemap = %{version}-%{release}
 Requires: python3-core
 Provides: pypi(cryptography)
 Requires: pypi(cffi)
@@ -68,6 +89,9 @@ tar xf %{_sourcedir}/cryptography-vendor-37.0.2.tar.xz
 cd %{_builddir}/cryptography-37.0.2
 mkdir -p ./
 cp -r %{_builddir}/cryptography-vendor-37.0.2/* %{_builddir}/cryptography-37.0.2/./
+pushd ..
+cp -a cryptography-37.0.2 buildavx2
+popd
 
 %build
 ## build_prepend content
@@ -85,7 +109,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1651680893
+export SOURCE_DATE_EPOCH=1653011261
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -94,6 +118,15 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
+python3 setup.py build
+
+popd
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
@@ -175,9 +208,26 @@ python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
+python3 -tt setup.py build install --root=%{buildroot}-v3
+popd
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
+
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-pypi-cryptography
+
+%files lib
+%defattr(-,root,root,-)
+/usr/share/clear/optimized-elf/other*
 
 %files license
 %defattr(0644,root,root,0755)
