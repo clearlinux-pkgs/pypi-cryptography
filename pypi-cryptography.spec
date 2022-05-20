@@ -6,7 +6,7 @@
 #
 Name     : pypi-cryptography
 Version  : 37.0.2
-Release  : 158
+Release  : 159
 URL      : https://files.pythonhosted.org/packages/51/05/bb2b681f6a77276fc423d04187c39dafdb65b799c8d87b62ca82659f9ead/cryptography-37.0.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/51/05/bb2b681f6a77276fc423d04187c39dafdb65b799c8d87b62ca82659f9ead/cryptography-37.0.2.tar.gz
 Source1  : http://localhost/cgit/projects/cryptography-vendor/snapshot/cryptography-vendor-37.0.2.tar.xz
@@ -109,7 +109,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1653011261
+export SOURCE_DATE_EPOCH=1653054782
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
