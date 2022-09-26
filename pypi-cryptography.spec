@@ -6,7 +6,7 @@
 #
 Name     : pypi-cryptography
 Version  : 38.0.1
-Release  : 166
+Release  : 167
 URL      : https://files.pythonhosted.org/packages/6d/0c/5e67831007ba6cd7e52c4095f053cf45c357739b0a7c46a45ddd50049019/cryptography-38.0.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/6d/0c/5e67831007ba6cd7e52c4095f053cf45c357739b0a7c46a45ddd50049019/cryptography-38.0.1.tar.gz
 Source1  : http://localhost/cgit/projects/cryptography-vendor/snapshot/cryptography-vendor-38.0.1.tar.xz
@@ -94,7 +94,7 @@ cp -a cryptography-38.0.1 buildavx2
 popd
 
 %build
-## build_prepend content
+## build_prepend_once content
 mkdir -p $HOME/.cargo
 cat > $HOME/.cargo/config.toml << "EOF"
 [source.crates-io]
@@ -104,12 +104,12 @@ replace-with = "vendored-sources"
 directory = "vendor"
 EOF
 ln -s $PWD/vendor $HOME/vendor
-## build_prepend end
+## build_prepend_once end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1664209185
+export SOURCE_DATE_EPOCH=1664209559
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -119,17 +119,6 @@ export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
 pushd ../buildavx2/
-## build_prepend content
-mkdir -p $HOME/.cargo
-cat > $HOME/.cargo/config.toml << "EOF"
-[source.crates-io]
-replace-with = "vendored-sources"
-
-[source.vendored-sources]
-directory = "vendor"
-EOF
-ln -s $PWD/vendor $HOME/vendor
-## build_prepend end
 export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
