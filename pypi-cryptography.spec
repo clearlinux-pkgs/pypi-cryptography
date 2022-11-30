@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x235AE5F129F9ED98 (paul.l.kehrer@gmail.com)
 #
 Name     : pypi-cryptography
-Version  : 38.0.3
-Release  : 170
-URL      : https://files.pythonhosted.org/packages/13/dd/a9608b7aebe5d2dc0c98a4b2090a6b815628efa46cc1c046b89d8cd25f4c/cryptography-38.0.3.tar.gz
-Source0  : https://files.pythonhosted.org/packages/13/dd/a9608b7aebe5d2dc0c98a4b2090a6b815628efa46cc1c046b89d8cd25f4c/cryptography-38.0.3.tar.gz
+Version  : 38.0.4
+Release  : 171
+URL      : https://files.pythonhosted.org/packages/e3/3f/41186b1f2fd86a542d399175f6b8e43f82cd4dfa51235a0b030a042b811a/cryptography-38.0.4.tar.gz
+Source0  : https://files.pythonhosted.org/packages/e3/3f/41186b1f2fd86a542d399175f6b8e43f82cd4dfa51235a0b030a042b811a/cryptography-38.0.4.tar.gz
 Source1  : http://localhost/cgit/projects/cryptography-vendor/snapshot/cryptography-vendor-38.0.1.tar.xz
-Source2  : https://files.pythonhosted.org/packages/13/dd/a9608b7aebe5d2dc0c98a4b2090a6b815628efa46cc1c046b89d8cd25f4c/cryptography-38.0.3.tar.gz.asc
+Source2  : https://files.pythonhosted.org/packages/e3/3f/41186b1f2fd86a542d399175f6b8e43f82cd4dfa51235a0b030a042b811a/cryptography-38.0.4.tar.gz.asc
 Summary  : cryptography is a package which provides cryptographic recipes and primitives to Python developers.
 Group    : Development/Tools
 License  : Apache-2.0 BSD-3-Clause MIT Python-2.0 Unicode-DFS-2016
@@ -83,14 +83,14 @@ python3 components for the pypi-cryptography package.
 
 
 %prep
-%setup -q -n cryptography-38.0.3
+%setup -q -n cryptography-38.0.4
 cd %{_builddir}
 tar xf %{_sourcedir}/cryptography-vendor-38.0.1.tar.xz
-cd %{_builddir}/cryptography-38.0.3
+cd %{_builddir}/cryptography-38.0.4
 mkdir -p ./
-cp -r %{_builddir}/cryptography-vendor-38.0.1/* %{_builddir}/cryptography-38.0.3/./
+cp -r %{_builddir}/cryptography-vendor-38.0.1/* %{_builddir}/cryptography-38.0.4/./
 pushd ..
-cp -a cryptography-38.0.3 buildavx2
+cp -a cryptography-38.0.4 buildavx2
 popd
 
 %build
@@ -109,7 +109,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1667398885
+export SOURCE_DATE_EPOCH=1669820065
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
