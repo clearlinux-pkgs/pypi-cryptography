@@ -1,2 +1,2 @@
-38.0.4
-openssl-dev
+41.0.4
+pkgconfig(openssl)
