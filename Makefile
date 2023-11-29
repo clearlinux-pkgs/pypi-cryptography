@@ -1,5 +1,5 @@
 PKG_NAME := pypi-cryptography
-URL = https://files.pythonhosted.org/packages/16/a7/38fdcdd634515f589c8c723608c0f0b38d66c6c2320b3095967486f3045a/cryptography-41.0.5.tar.gz
-ARCHIVES = $(CGIT_BASE_URL)/vendor/pypi-cryptography/snapshot/pypi-cryptography-2023-10-25-20-39-35.tar.xz ./vendor
+URL = https://files.pythonhosted.org/packages/ce/b3/13a12ea7edb068de0f62bac88a8ffd92cc2901881b391839851846b84a81/cryptography-41.0.7.tar.gz
+ARCHIVES = $(CGIT_BASE_URL)/vendor/pypi-cryptography/snapshot/pypi-cryptography-2023-11-28-08-51-57.tar.xz ./vendor
 
 include ../common/Makefile.common
