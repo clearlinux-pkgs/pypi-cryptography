@@ -7,7 +7,7 @@
 #
 Name     : pypi-cryptography
 Version  : 41.0.7
-Release  : 178
+Release  : 179
 URL      : https://files.pythonhosted.org/packages/ce/b3/13a12ea7edb068de0f62bac88a8ffd92cc2901881b391839851846b84a81/cryptography-41.0.7.tar.gz
 Source0  : https://files.pythonhosted.org/packages/ce/b3/13a12ea7edb068de0f62bac88a8ffd92cc2901881b391839851846b84a81/cryptography-41.0.7.tar.gz
 Source1  : http://localhost/cgit/vendor/pypi-cryptography/snapshot/pypi-cryptography-2023-11-28-08-51-57.tar.xz
